@@ -30,7 +30,7 @@ export default {
 		  }
   },
   mounted () {
-    if (this.$route.query) {
+    if (this.$route.query.q) {
       this.query = this.$route.query.q
       this.search()
     }
