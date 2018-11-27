@@ -1,8 +1,13 @@
-# tublir-scroller
+# tumblr-scroller
 
 ## Project setup
 ```
 yarn install
+```
+
+### Add `.env.development.local` from `.env.example` and add tumblr api key
+```
+VUE_APP_TUMBLR_KEY=[your tumblr key here]
 ```
 
 ### Compiles and hot-reloads for development
