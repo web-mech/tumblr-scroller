@@ -5,15 +5,15 @@
 </template>
 
 <script>
-	import ResultsListItem from './ResultsList/ResultsListItem'
-	import ResultsListContainer from './ResultsList/ResultsListContainer'
+import ResultsListItem from './ResultsList/ResultsListItem'
+import ResultsListContainer from './ResultsList/ResultsListContainer'
 
-	export default {
-		components: {
-			ResultsListItem,
-			ResultsListContainer
-		}
-	}
+export default {
+  components: {
+    ResultsListItem,
+    ResultsListContainer
+  }
+}
 </script>
 
 <style lang="scss" scoped>

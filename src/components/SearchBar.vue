@@ -5,37 +5,37 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				query: ''
-			}
-		},
-		methods: {
-			search(event) {
-				this.$router.push({
-					path: '/s',
+export default {
+  data () {
+    return {
+      query: ''
+    }
+  },
+  methods: {
+    search (event) {
+      this.$router.push({
+        path: '/s',
 			        query: {
 			          q: this.query
-			        },
+			        }
 			    })
-				this.$store.dispatch('search', this.query)
-			}
-		},
-		directives: {
+      this.$store.dispatch('search', this.query)
+    }
+  },
+  directives: {
 		  focus: {
 		    inserted: function (el) {
 		      el.focus()
 		    }
 		  }
-		},
-		mounted() {
-			if (this.$route.query) {
-				this.query = this.$route.query.q
-				this.search()
-			}
-		}
-	}
+  },
+  mounted () {
+    if (this.$route.query) {
+      this.query = this.$route.query.q
+      this.search()
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -53,5 +53,5 @@
 			}
 		}
 	}
-	
+
 </style>

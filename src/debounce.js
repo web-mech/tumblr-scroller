@@ -1,8 +1,8 @@
-export default function debounce(func, wait, immediate) {
+export default function debounce (func, wait, immediate) {
   let timeout
-  return function() {
+  return function () {
     let args = arguments
-    
+
     let later = () => {
       timeout = null
       if (!immediate) {

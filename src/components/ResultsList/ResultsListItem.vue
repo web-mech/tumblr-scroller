@@ -5,9 +5,9 @@
 </template>
 
 <script>
-	export default {
-		props: ['result']
-	}
+export default {
+  props: ['result']
+}
 </script>
 <style lang="scss" scoped>
 	.image {
