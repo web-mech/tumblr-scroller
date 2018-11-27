@@ -7,7 +7,6 @@
 <script>
 	import ResultsListItem from './ResultsList/ResultsListItem'
 	import ResultsListContainer from './ResultsList/ResultsListContainer'
-	import debounc from '@/debounce'
 
 	export default {
 		components: {
