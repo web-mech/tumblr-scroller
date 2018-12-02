@@ -1,7 +1,7 @@
 <template>
-	<div :style="`height: ${height}px`">
-		<slot></slot>
-	</div>
+  <div :style="`height: ${height}px`" @scroll="onScroll">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -12,18 +12,33 @@ const HEIGHT_PAGINATE_BUFFER = UNIT_HEIGHT * 10
 export default {
   data () {
     return {
-      height: window.innerHeight - 100
+      offset: 0,
+      height: window.innerHeight,
+      onResizeBound: false,
+      onWindowResize () {
+        this.height = window.innerHeight
+        this.offset = this.$el.getBoundingClientRect().top + window.scrollY
+      }
     }
   },
+  computed: {
+    cHeight() {
+      return this.height - this.offset
+    }
+  },
+  methods: {
+    onScroll: debounce(function () {
+      if ((this.$el.scrollHeight - this.$el.scrollTop - HEIGHT_PAGINATE_BUFFER) <= this.$el.clientHeight) {
+        this.$store.dispatch('search', this.$store.state.query)
+      }
+    }, 50, false)
+  },
   mounted () {
-    this.$el.addEventListener('scroll', debounce((event) => {
-			    if ((this.$el.scrollHeight - this.$el.scrollTop - HEIGHT_PAGINATE_BUFFER) <= this.$el.clientHeight) {
-			    	this.$store.dispatch('search', this.$store.state.query)
-			    }
-    }, 50, false))
-    window.addEventListener('resize', () => {
-      this.height = window.innerHeight
-    })
+    this.onResizeBound = this.onWindowResize.bind(this)
+    window.addEventListener('resize', this.onResizeBound)
+  },
+  afterDestroy () {
+    window.removeEventListener('resize', this.onResizeBound)
   }
 }
 </script>
