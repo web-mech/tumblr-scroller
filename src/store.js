@@ -39,7 +39,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    search ({ commit, state }, query) {
+    search ({ commit, state, dispatch }, query) {
       if (query !== state.query) {
         commit(RESET_RESULTS)
       }
@@ -54,23 +54,28 @@ export default new Vuex.Store({
         if (meta.status !== 200) {
           return
         }
-        let posts = response
-          .filter(({ type }) => type === 'photo')
-        let results = posts
-          .map((result) => result.photos.slice(0).shift().original_size)
-
-        let lastPost = posts.slice(0).pop()
-
-        commit(ADD_RESULTS, results)
-
-        if (!lastPost) {
-          return
-        }
-
-        commit(SET_META, {
-          before: lastPost.timestamp
-        })
+        return dispatch('processResponse', response)
       })
+    },
+    processResponse ({ commit }, response) {
+      let posts = response
+        .filter(({ type }) => type === 'photo')
+      let results = posts
+        .map((result) => result.photos.slice(0).shift().original_size)
+
+      let lastPost = posts.slice(0).pop()
+
+      commit(ADD_RESULTS, results)
+
+      if (!lastPost) {
+        return
+      }
+
+      commit(SET_META, {
+        before: lastPost.timestamp
+      })
+
+      return results
     }
   }
 })
