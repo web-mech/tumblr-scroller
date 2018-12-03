@@ -1,5 +1,5 @@
 <template>
-  <div :style="`height: ${height}px`" @scroll="onScroll">
+  <div :style="`height: ${cHeight}px`" @scroll="onScroll">
     <slot></slot>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
     }
   },
   computed: {
-    cHeight() {
+    cHeight () {
       return this.height - this.offset
     }
   },
