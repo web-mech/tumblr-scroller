@@ -31,8 +31,9 @@ export default new Vuex.Store({
     [ADD_RESULTS] (state, results) {
       state.results.push(...results)
     },
-    [RESET_RESULTS] ({ results }) {
+    [RESET_RESULTS] ({ results, meta }) {
       results.length = 0
+      meta.before = (new Date()).getTime() / 1000
     },
     [SET_META] (state, meta) {
       Object.assign(state.meta, meta)

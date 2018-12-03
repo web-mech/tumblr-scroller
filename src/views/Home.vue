@@ -1,19 +1,24 @@
 <template>
-  <div class="home flex">
-    <SearchBar/>
-    <ResultsList/>
+  <div>
+  	<ParallaxList :delta="delta" />
+    <SearchBar @delta="delta = $event"/>
   </div>
 </template>
 
 <script>
 
 import SearchBar from '@/components/SearchBar.vue'
-import ResultsList from '@/components/ResultsList.vue'
+import ParallaxList from '@/components/ParallaxList.vue'
 
 export default {
+  data () {
+    return {
+      delta: 0
+    }
+  },
   components: {
-    SearchBar,
-    ResultsList
+    ParallaxList,
+    SearchBar
   }
 }
 </script>
