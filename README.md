@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-https://dist-d8oyvekh5.now.sh
+https://dist-kf6mj56fy.now.sh
 
 
 ## Project setup
